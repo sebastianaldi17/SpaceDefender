@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Enemy.gd" type="Script" id=1]
+[ext_resource path="res://src/img/ENEMY1.png" type="Texture" id=2]
+[ext_resource path="res://src/img/EXPLO1.png" type="Texture" id=3]
+[ext_resource path="res://src/img/EXPLO2.png" type="Texture" id=4]
+[ext_resource path="res://src/img/EXPLO3.png" type="Texture" id=5]
+[ext_resource path="res://src/img/EXPLO4.png" type="Texture" id=6]
+[ext_resource path="res://src/sfx/Explosion.wav" type="AudioStream" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "die"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ENEMY1:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="Enemy" type="KinematicBody2D"]
+position = Vector2( -27.5641, -29.5975 )
+script = ExtResource( 1 )
+
+[node name="ENEMY1" type="Sprite" parent="."]
+position = Vector2( 27.5643, 29.5032 )
+rotation = 3.14159
+scale = Vector2( 0.0314845, 0.0314844 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -0.0546265, 0.989075, -0.0546265, 16.1, 20.7689, 31.4412, 19.2026, 37.7528, 16.6687, 39.6416, 25.8366, 56.8718, 27.6333, 58.4842, 29.5222, 57.2403, 38.4597, 39.1349, 36.663, 37.6606, 35.327, 31.4412, 55.2752, 15.9157, 55.3213, 0.8048 )
+
+[node name="bullet_source" type="Position2D" parent="."]
+position = Vector2( 27.6442, 59.1265 )
+
+[node name="L" type="RayCast2D" parent="."]
+position = Vector2( -0.368057, 2.57636 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( -10, 0 )
+
+[node name="R" type="RayCast2D" parent="."]
+position = Vector2( 55.5758, 2.39233 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 10, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/die = SubResource( 1 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
