@@ -38,18 +38,19 @@ func _physics_process(delta):
 		$CollisionPolygon2D.disabled = true
 		$AnimationPlayer.play("died")
 	elif is_network_master():
-		if Input.is_action_pressed("ui_left"):
-			motion.x = -1
-		elif Input.is_action_pressed("ui_right"):
-			motion.x = 1
-		else:
-			motion.x = 0
-		if Input.is_action_pressed("ui_up"):
-			motion.y = -1
-		elif Input.is_action_pressed("ui_down"):
-			motion.y = 1
-		else:
-			motion.y = 0
+		if $MoveTimer.time_left <= 0:
+			if Input.is_action_pressed("ui_left"):
+				motion.x = -1
+			elif Input.is_action_pressed("ui_right"):
+				motion.x = 1
+			else:
+				motion.x = 0
+			if Input.is_action_pressed("ui_up"):
+				motion.y = -1
+			elif Input.is_action_pressed("ui_down"):
+				motion.y = 1
+			else:
+				motion.y = 0
 		if Input.is_action_just_pressed("shoot"):
 			rpc("shoot", $bullet_source.global_position)
 		motion *= 4
@@ -71,4 +72,4 @@ func set_player_name(new_name):
 
 func _on_Timer_timeout():
 	$CollisionPolygon2D.disabled = false
-	pass # Replace with function body.
+	pass

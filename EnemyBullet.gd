@@ -1,6 +1,7 @@
 extends Area2D
 
 const SPEED = 500
+
 var velocity = Vector2()
 var direction = 1
 # Called when the node enters the scene tree for the first time.
@@ -17,7 +18,6 @@ func _physics_process(delta):
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
-
 
 func _on_Area2D_body_entered(body):
 	# print(body.name)

@@ -84,3 +84,7 @@ cast_to = Vector2( 10, 0 )
 anims/die = SubResource( 1 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="ScreenCheck" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 26.7683, 0.802094 )
+scale = Vector2( 2.88566, 0.279266 )

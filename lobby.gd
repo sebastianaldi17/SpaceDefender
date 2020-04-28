@@ -85,7 +85,10 @@ func refresh_lobby():
 
 
 func _on_start_pressed():
-	gamestate.begin_game()
+	if len(gamestate.get_player_list()) < 3:
+		$FourDialog.popup_centered_minsize()
+	else:
+		gamestate.begin_game()
 
 
 func _on_Button_pressed():

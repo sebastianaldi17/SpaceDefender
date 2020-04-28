@@ -148,7 +148,6 @@ size_flags_horizontal = 2
 size_flags_vertical = 2
 
 [node name="WindowDialog" type="AcceptDialog" parent="."]
-visible = true
 margin_right = 257.0
 margin_bottom = 92.0
 window_title = "Credits / How to play"
@@ -160,6 +159,12 @@ Sebastian Aldi
 Press the arrow keys to move around.
 
 Press the Z button to shoot."
+
+[node name="FourDialog" type="AcceptDialog" parent="."]
+margin_right = 257.0
+margin_bottom = 92.0
+window_title = "Not enough players!"
+dialog_text = "Need 4 players to start!"
 [connection signal="pressed" from="Players/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Connect/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="Connect/Join" to="." method="_on_join_pressed"]
